@@ -13,26 +13,43 @@
 </style>
 
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000;">
-    <div class="container-fluid">
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          {% with request.resolver_match.view_name as view_name %}
-          <li class="nav-item me-2">
-            <a href="{% url 'homepage:index' %}" class="nav-link {% if view_name == 'homepage:index' %}active{% endif %}">Главная</a>
-          </li>
-          <li class="nav-item me-2">
-            <a href="{% url 'ice_cream:ice_cream_list' %}" class="nav-link {% if view_name == 'ice_cream:ice_cream_list' %}active{% endif %}">Каталог мороженого</a>
+  {% with request.resolver_match.view_name as view_name %}
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+    <div class="container">
+      <div 
+        class="navbar-toggler" 
+        type="button" 
+        data-toggle="collapse" 
+        data-target="#navbarNav" 
+        aria-controls="navbarNav" 
+        aria-expanded="false" 
+        aria-label="Toggle navigation"
+        >
+        <span class="navbar-toggler-icon"></span>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarNav">                      
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link {% if view_name == 'homepage:index' %}active{% endif %}" href="homepage/index.html">
+              Главная
+            </a> 
           </li>
           <li class="nav-item">
-            <a href="{% url 'about:description' %}" class="nav-link {% if view_name == 'about:description' %}active{% endif %}">О проекте</a>
+            <a class="nav-link {% if view_name == 'ice_cream:ice_cream_list' %}active{% endif %}" href="{% url 'ice_cream:ice_cream_list' %}">
+              Каталог мороженого
+            </a>
           </li>
-          {% endwith %}
+          <li class="nav-item">
+            <a class="nav-link {% if view_name  == 'about:description' %}active{% endif %}" href="{% url 'about:description' %}">
+              О проекте
+            </a> 
+          </li>
         </ul>
-        <a class="navbar-brand" href="#">
-          <img src="{% static 'img/logo.png' %}" alt="Logo" style="height: 50px; width: 50px;">
-        </a>
-      </div>
+      </div> 
+      <a class="navbar-brand" href="index.html">
+        <img src="img/logo.png" height="50" class="d-inline-block align-top" alt="">            
+      </a>         
     </div>
   </nav>
+  {% endwith %}
 </header>
