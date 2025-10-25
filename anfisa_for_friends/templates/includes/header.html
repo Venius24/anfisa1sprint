@@ -1,30 +1,38 @@
 {% load static %}
-<style>
-  nav ul {
-    list-style-type: none; /* убирает маркеры списка */
-    padding: 0; /* убирает отступы */
-    margin: 10px; /* убирает отступы */
-  }
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
 
-  nav li {
-    display: inline; /* располагает элементы списка в одну строку */
-    margin-right: 40px; /* добавляет отступы между элементами */
-    text-decoration: none;
+<style>
+  .nav-link.active {
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 8px;
+    padding: 10px 12px;
   }
 </style>
+
 <header>
-  <img src="{% static 'img/logo.png' %}" height="50" alt="" style="float: right;">
-  <nav>
-    <ul>
-      <li>
-        <a href="{% url 'homepage:index' %}">Главная</a>  
-      </li>
-      <li>
-        <a href="{% url 'ice_cream:ice_cream_list' %}">Каталог мороженого</a>       
-      </li>
-      <li>
-        <a href="{% url 'about:description' %}">О проекте</a>
-      </li>
-    </ul>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000;">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% with request.resolver_match.view_name as view_name %}
+          <li class="nav-item me-2">
+            <a href="{% url 'homepage:index' %}" class="nav-link {% if view_name == 'homepage:index' %}active{% endif %}">Главная</a>
+          </li>
+          <li class="nav-item me-2">
+            <a href="{% url 'ice_cream:ice_cream_list' %}" class="nav-link {% if view_name == 'ice_cream:ice_cream_list' %}active{% endif %}">Каталог мороженого</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'about:description' %}" class="nav-link {% if view_name == 'about:description' %}active{% endif %}">О проекте</a>
+          </li>
+          {% endwith %}
+        </ul>
+        <a class="navbar-brand" href="#">
+          <img src="{% static 'img/logo.png' %}" alt="Logo" style="height: 50px; width: 50px;">
+        </a>
+      </div>
+    </div>
   </nav>
 </header>
