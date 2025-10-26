@@ -30,7 +30,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">                      
         <ul class="nav nav-pills">
           <li class="nav-item">
-            <a class="nav-link {% if view_name == 'homepage:index' %}active{% endif %}" href="homepage/index.html">
+            <a class="nav-link {% if view_name == 'homepage:index' %}active{% endif %}" href="{% url 'homepage:index' %}">
               Главная
             </a> 
           </li>
@@ -46,10 +46,11 @@
           </li>
         </ul>
       </div> 
-      <a class="navbar-brand" href="index.html">
-        <img src="img/logo.png" height="50" class="d-inline-block align-top" alt="">            
+      <a class="navbar-brand" href="{% url 'homepage:index' %}">
+        <img src="{% static 'img/logo.png' %}" height="50" class="d-inline-block align-top" alt="Logo">            
       </a>         
     </div>
   </nav>
   {% endwith %}
+  <br><br><br><br>
 </header>
